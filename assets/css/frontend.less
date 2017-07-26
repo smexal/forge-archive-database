@@ -1,0 +1,41 @@
+#archive-database {
+    position: relative;
+
+    .table-editbar {
+        width: 30%;
+        position: absolute;
+        top: 0;
+        right: 100px;
+    }
+    .grid {
+        margin-top: 60px;
+
+        .grid-element {
+            max-width: 200px;
+            margin: 0 20px 20px 0;
+
+            &:nth-child(4n) {
+                margin-right: 0;
+            }
+
+            img {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            background-color: white;
+            div:not(#image_url) {
+                padding: 10px;
+                font-size: 0.9em;
+                color: @color-grey;
+            }
+            #title {
+                span {
+                    color: @color-grey-dark;
+                    font-size: 1.225em;
+                    line-height: 1.5em;
+                }
+            }
+        }
+    }
+}
