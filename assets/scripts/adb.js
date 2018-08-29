@@ -56,7 +56,7 @@ var archiveDatabase = {
                 var table = $(document).find("table[id^='infinite___'],div[id^='infinite___']");
                 var type = table.attr('id').split('___');
                 type = type[1];
-                var requestUrl = '/api/archive-database/infiniteLoading/'+type+
+                var requestUrl = $("#archive-database").attr('data-base-url') + '/api/archive-database/infiniteLoading/'+type+
                     '?limit=30&offset=0'+
                     '&search=' + encodeURI(input.val())+
                     '&grid='+archiveDatabase.grid;
@@ -111,7 +111,7 @@ var archiveDatabase = {
         var type = table.attr('id').split('___');
         type = type[1];
         $(window).unbind('scroll').scroll(function() {
-            if($(window).scrollTop() + $(window).height() == $(document).height()) {
+            if(Math.ceil($(window).scrollTop() + $(window).height()) == Math.ceil($(document).height())) {
                 // get search query value
                 var searchVal = $("input[name='adb_search']").val();
                 if(typeof(searchVal) === 'undefined') {
@@ -122,7 +122,7 @@ var archiveDatabase = {
                 if(rows.length == 0) {
                     rows = table.find(">div");
                 }
-                var requestUrl = '/api/archive-database/infiniteLoading/'+type+
+                var requestUrl = $("#archive-database").attr('data-base-url') + '/api/archive-database/infiniteLoading/'+type+
                     '?limit='+archiveDatabase.steps+
                     '&offset='+rows.length+
                     '&search='+searchVal+
@@ -174,7 +174,7 @@ var archiveDatabase = {
         trigger.data('index', index+1);
         var selectNameId = type+'___'+index;
         var nothingText = trigger.data('nothing');
-        var requestUrl = '/api/archive-database/getSelect/'+
+        var requestUrl = $("#archive-database").attr('data-base-url') + '/api/archive-database/getSelect/'+
                     '?type='+type+
                     '&count='+index;
         $.ajax({

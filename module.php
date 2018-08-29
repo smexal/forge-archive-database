@@ -39,8 +39,8 @@ class Module extends AbstractModule {
     public function start() {
         Auth::registerPermissions("manage.archive-database");
 
-        Loader::instance()->addStyle("modules/archive-database/assets/css/backend.less");
-        Loader::instance()->addScript("modules/archive-database/assets/scripts/adb.js");
+        Loader::instance()->addStyle("modules/forge-archive-database/assets/css/backend.less");
+        Loader::instance()->addScript("modules/forge-archive-database/assets/scripts/adb.js");
 
         App::instance()->tm->theme->addScript($this->url()."assets/scripts/masonry.js", true);
         App::instance()->tm->theme->addScript($this->url()."assets/scripts/imagesloaded.js", true);
@@ -182,7 +182,9 @@ class Module extends AbstractModule {
                 $q.='&hide='.Settings::get('adb-base-hide-fields-in-table');
             }
 
-            $table = new Table(json_decode($bc->call('GET', 'get/'.$this->baseView.'/filter'.$q)));
+            $data = json_decode($bc->call('GET', 'get/'.$this->baseView.'/filter'.$q));
+
+            $table = new Table($data);
             $table->setId($this->baseView);
             $table->addEditBar();
             $table = $this->barContent($table);

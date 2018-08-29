@@ -4,6 +4,7 @@ namespace Forge\Modules\ArchiveDatabase;
 
 use Forge\Core\Abstracts\Component;
 use Forge\Core\App\App;
+use Forge\Core\Classes\Utils;
 use Forge\Core\Classes\ContentNavigation;
 use Forge\Core\Classes\Fields;
 use Forge\Core\Classes\Media;
@@ -24,8 +25,8 @@ class ArchiveComponent extends Component {
             ]
         ];
         return array(
-            'name' => i('Image Archive', 'rodo-theme'),
-            'description' => i('The Complete Archive, with filters and search.', 'rodo-theme'),
+            'name' => i('Image Archive', 'adb'),
+            'description' => i('The Complete Archive, with filters and search.', 'adb'),
             'id' => 'adb_main',
             'image' => '',
             'level' => 'inner',
@@ -45,10 +46,10 @@ class ArchiveComponent extends Component {
         $table->addEditBar();
         $table = $this->barContent($table);
 
-
         return App::instance()->render(MOD_ROOT."/archive-database/templates/", "adb", [
             'title' => $this->getField('title'),
-            'images' => $table->render()
+            'images' => $table->render(),
+            'base_url' => Utils::getHomeUrl()
         ]);
     }
 
