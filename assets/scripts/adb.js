@@ -23,6 +23,23 @@ var archiveDatabase = {
             searchField.closest('.form-group').addClass('focus');
             searchField.trigger('input');
         }
+
+        archiveDatabase.bigClick();
+    },
+
+    bigClick : function() {
+        var idArrayForZapping = new Array();
+        $("#archive-database img.adb-thumb").each(function() {
+            idArrayForZapping.push($(this).attr('data-id'));
+        });
+        $("#archive-database img.adb-thumb").each(function() {
+            $(this).on('click', function() {
+                var requestUrl = $("#archive-database").attr('data-base-url');
+                requestUrl += '/api/archive-database/detailImage/' + $(this).attr('data-id');
+                rdon_overlay.open();
+                rdon_overlay.load(requestUrl);
+            })
+        });
     },
 
     isMasonry : function() {

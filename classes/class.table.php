@@ -106,6 +106,7 @@ class Table {
             $id = 0;
             $rowVars = get_object_vars( $row );
             $td = [];
+            $imageId = $rowVars['id'];
             foreach( $rowVars as $key => $value ) {
                 if(is_array($this->fieldsToDisplay) && ! in_array($key, $this->fieldsToDisplay)) {
                     continue;
@@ -173,7 +174,7 @@ class Table {
                     $value = $v;
                 }
                 if($key == 'image_url') {
-                    $value = '<img src='.$value.' class="adb-thumb" />';
+                    $value = '<img data-id="'.$imageId.'" src='.$value.' onerror=\'this.src="http://www.independentmediators.co.uk/wp-content/uploads/2016/02/placeholder-image.jpg"\' class="adb-thumb" />';
                 }
                 if($key == 'id') {
                     $id = $value;

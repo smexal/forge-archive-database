@@ -39,8 +39,8 @@ class Module extends AbstractModule {
     public function start() {
         Auth::registerPermissions("manage.archive-database");
 
-        Loader::instance()->addStyle("modules/forge-archive-database/assets/css/backend.less");
-        Loader::instance()->addScript("modules/forge-archive-database/assets/scripts/adb.js");
+        Loader::instance()->addStyle("modules/archive-database/assets/css/backend.less");
+        Loader::instance()->addScript("modules/archive-database/assets/scripts/adb.js");
 
         App::instance()->tm->theme->addScript($this->url()."assets/scripts/masonry.js", true);
         App::instance()->tm->theme->addScript($this->url()."assets/scripts/imagesloaded.js", true);
@@ -135,6 +135,16 @@ class Module extends AbstractModule {
         }
         return json_encode([
             'newRows' => $table->renderRows()
+        ], JSON_HEX_QUOT | JSON_HEX_TAG);
+    }
+
+    public function detailImage($query, $data) {
+        $bc = BaseConnector::instance();
+        $data = $bc->call('GET', 'get/images/filter?field=id&type=EQUALS&displayAll&value='.$query[0]);
+        $detailImage = new Detail($data);
+
+        return json_encode([
+            'content' => $detailImage->render()
         ], JSON_HEX_QUOT | JSON_HEX_TAG);
     }
 

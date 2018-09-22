@@ -1,0 +1,12 @@
+<div class="detail-image row">
+    <div class="col-lg-8"><img src="{$image}" /></div>
+    <div class="col-lg-4">
+        <h2>{$title}</h2>
+        <dl>
+        {loop="meta"}
+            <dt>{$value.title}</dt>
+            <dd>{$value.value}</dd>
+        {/loop}
+        </dl>
+    </div>
+</div>
