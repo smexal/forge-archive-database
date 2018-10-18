@@ -2,10 +2,31 @@
     position: relative;
 
     .table-editbar {
-        width: 30%;
-        position: absolute;
-        top: 0;
-        right: 100px;
+        background-color: #FFF;
+        border: 1px solid #F0F0F0;
+
+        display: flex;
+        justify-content: space-between;
+
+        .left, .right {
+            max-width: 50%;
+
+            .form-group {
+                margin-bottom: 0;
+
+                label {
+                    padding-right: 10px;
+                }
+
+                input {
+                    box-shadow: none;
+
+                    &:focus {
+                        border: 1px solid #333;
+                    }
+                }
+            }
+        }
     }
     .grid {
         margin-top: 60px;
@@ -13,6 +34,7 @@
         .grid-element {
             max-width: 275px;
             margin: 0 20px 20px 0;
+            cursor: pointer;
 
             &:nth-child(4n) {
                 margin-right: 0;
