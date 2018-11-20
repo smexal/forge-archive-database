@@ -25,6 +25,17 @@ var archiveDatabase = {
         }
 
         archiveDatabase.bigClick();
+        archiveDatabase.toggleAdvanced();
+    },
+
+    toggleAdvanced : function() {
+        $(".adb-toggle-advanced").unbind('click').on('click', function() {
+            if($(".adb-advanced-search").hasClass('show')) {
+                $(".adb-advanced-search").removeClass('show');
+            } else {
+                $(".adb-advanced-search").addClass('show');
+            }
+        });
     },
 
     bigClick : function() {

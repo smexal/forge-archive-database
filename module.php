@@ -11,6 +11,7 @@ use \Forge\Core\Classes\Fields;
 use \Forge\Core\Classes\Settings;
 use \Forge\Core\Classes\Localization;
 use \Forge\Core\Classes\Utils;
+use \Forge\Core\Classes\Pages;
 
 use \Forge\Modules\ArchiveDatabase\BaseConnector;
 use \Forge\Modules\ArchiveDatabase\Table;
@@ -338,6 +339,19 @@ class Module extends AbstractModule {
             'label' => i('Fields, to display in the grid.', 'adb'),
             'hint' => i('All fields, which will be displayed in the grid. Multiple fields split by `,`.', 'adb')
         ), Settings::get('adb-grid-fields')), 'adb-grid-fields', 'left', 'archive-database');
+
+        $pages = Pages::getAll();
+        $values = array();
+        foreach($pages as $page) {
+            $values[$page['id']] = $page['name'];
+        }
+        $this->settings->registerField(
+            Fields::select(array(
+            'key' => 'adb-buy-image-page',
+            'label' => 'Page where the information for buying the images is placed.',
+            'values' => $values,
+            'chosen' => true
+        ), Settings::get('adb-buy-image-page')), 'adb-buy-image-page', 'left', 'archive-database');
     }
 
 }

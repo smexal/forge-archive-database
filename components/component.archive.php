@@ -60,11 +60,23 @@ class ArchiveComponent extends Component {
     }
 
     private function barContent($table) {
+        $advanced = '<div class="adb-advanced-search">';
+        $advanced.= '<h3>'.i('Advanced Search', 'adb').'</h3>';
+        $advanced.= Fields::text([
+            'label' => i('Number', 'adb'),
+            'key' => 'adb_s_numero'
+        ]);
+        $advanced.= Fields::text([
+            'label' => i('Number', 'adb'),
+            'key' => 'adb_s_numero'
+        ]);
+        $advanced.= '</div>';
+
         $table->addBarContentRight(
             Fields::text([
                 'label' => i('Search', 'adb'),
                 'key' => 'adb_search'
-            ])
+            ]). "<a href='javascript://' class='adb-toggle-advanced'>".i('Advanced Search', 'adb').'</a>'.$advanced
         );
 
         return $table;
