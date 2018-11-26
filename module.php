@@ -127,7 +127,22 @@ class Module extends AbstractModule {
         if(\array_key_exists('search', $_GET)) {
             $q.= "&search=".\urlencode($_GET['search']);
         }
-        $queryUrl = 'get/'.$query[0].$q;
+        $filter = '';
+        if($_GET['s_title'] != 'undefined' && strlen($_GET['s_title']) > 0) {
+            $filter = '/filter/';
+            $q.= '&field=title&value='.$_GET['s_title'].'&type=FUZZY';
+        }
+        $filter = '';
+        if($_GET['s_identifier'] != 'undefined' && strlen($_GET['s_identifier']) > 0) {
+            $filter = '/filter/';
+            $q.= '&field=identifier&value='.$_GET['s_identifier'].'&type=FUZZY';
+        }
+        $filter = '';
+        if($_GET['s_creation_date'] != 'undefined' && strlen($_GET['s_creation_date']) > 0) {
+            $filter = '/filter/';
+            $q.= '&field=creation_date&value='.$_GET['s_creation_date'].'&type=FUZZY';
+        }
+        $queryUrl = 'get/'.$query[0].$filter.$q;
         $table = new Table(json_decode($bc->call('GET', $queryUrl)));
         $table->setBaseUrl(['manage', 'module-settings', 'archive-database', $query[0]]);
         if(array_key_exists('grid', $_GET) && $_GET['grid'] == 'true') {

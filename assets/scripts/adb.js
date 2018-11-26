@@ -36,6 +36,10 @@ var archiveDatabase = {
                 $(".adb-advanced-search").addClass('show');
             }
         });
+
+        $(document).find("input[name^='adb_s_']").unbind('input').on('input', function () {
+            $(document).find("input[name='adb_search']").trigger('input');
+        });
     },
 
     bigClick : function() {
@@ -87,6 +91,10 @@ var archiveDatabase = {
                 var requestUrl = $("#archive-database").attr('data-base-url') + '/api/archive-database/infiniteLoading/'+type+
                     '?limit=30&offset=0'+
                     '&search=' + encodeURI(input.val())+
+                    '&s_title=' + encodeURI($("input[name='adb_s_title']").val()) +
+                    '&s_creation_date=' + encodeURI($("input[name='adb_s_creation_date']").val()) +
+                    '&s_subject=' + encodeURI($("input[name='adb_s_subject']").val()) +
+                    '&s_identifier=' + encodeURI($("input[name='adb_s_identifier']").val()) +
                     '&grid='+archiveDatabase.grid;
 
                 if(archiveDatabase.isMasonry()) {

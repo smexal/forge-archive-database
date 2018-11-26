@@ -63,12 +63,24 @@ class ArchiveComponent extends Component {
         $advanced = '<div class="adb-advanced-search">';
         $advanced.= '<h3>'.i('Advanced Search', 'adb').'</h3>';
         $advanced.= Fields::text([
-            'label' => i('Number', 'adb'),
-            'key' => 'adb_s_numero'
+            'label' => i('Creation date', 'adb'),
+            'key' => 'adb_s_creation_date'
+        ]);
+        /*$advanced.= Fields::text([
+            'label' => i('Title', 'adb'),
+            'key' => 'adb_s_title'
         ]);
         $advanced.= Fields::text([
-            'label' => i('Number', 'adb'),
-            'key' => 'adb_s_numero'
+            'label' => i('Subject', 'adb'),
+            'key' => 'adb_s_subject'
+        ]);*/
+        /*$advanced.= Fields::text([
+            'label' => i('Autor', 'adb'),
+            'key' => 'adb_s_autor'
+        ]);*/
+        $advanced.= Fields::text([
+            'label' => i('Identifier', 'adb'),
+            'key' => 'adb_s_identifier'
         ]);
         $advanced.= '</div>';
 
