@@ -298,7 +298,7 @@ class Module extends AbstractModule {
     }
 
     public function modifyManageNavigation($navigation) {
-        if(Auth::allowed('manage.archive-database')) {
+        if(Auth::allowed('manage.archive-database', true)) {
             $navigation->add(
                 'adb',
                 i('Archive Database', 'adb'),
