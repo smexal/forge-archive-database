@@ -49,7 +49,7 @@ class ArchiveComponent extends Component {
         return App::instance()->render(MOD_ROOT."/archive-database/templates/", "adb", [
             'title' => $this->getField('title'),
             'images' => $table->render(),
-            'base_url' => Utils::getHomeUrl()
+            'base_url' => str_replace("http://", "//", Utils::getHomeUrl())
         ]);
     }
 
