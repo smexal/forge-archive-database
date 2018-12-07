@@ -88,7 +88,7 @@ class ArchiveComponent extends Component {
             Fields::text([
                 'label' => i('Search', 'adb'),
                 'key' => 'adb_search'
-            ]). "<a href='javascript://' class='adb-toggle-advanced'>".i('Advanced Search', 'adb').'</a>'.$advanced
+            ])
         );
 
         return $table;
