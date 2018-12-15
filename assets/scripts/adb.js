@@ -116,13 +116,12 @@ var archiveDatabase = {
                         var $newtems = $(data.newRows);
                         // layout Masonry after each image loads
                         $(".grid").html($newtems);
+                        
                         setTimeout(function() {
-                            $newtems.imagesLoaded().progress( function() {
-                                archiveDatabase.msnry = $(".grid").masonry({
-                                    itemSelector: '.grid-element'
-                                });
+                            archiveDatabase.msnry = $(".grid").masonry({
+                                itemSelector: '.grid-element'
                             });
-                        }, 500);
+                        }, 700);
                     }
                     loader.fadeOut(400, function() {
                         table.find(".spinner").remove();
