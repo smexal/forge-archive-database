@@ -116,19 +116,20 @@ var archiveDatabase = {
                         var $newtems = $(data.newRows);
                         // layout Masonry after each image loads
                         $(".grid").html($newtems);
-                        
                         setTimeout(function() {
-                            archiveDatabase.msnry = $(".grid").masonry({
-                                itemSelector: '.grid-element'
+                            $(".grid").imagesLoaded().progress( function() {
+                                archiveDatabase.msnry = $(".grid").masonry({
+                                    itemSelector: '.grid-element'
+                                });
                             });
-                        }, 700);
+                        }, 100);
                     }
                     loader.fadeOut(400, function() {
                         table.find(".spinner").remove();
                     });
                     $(document).trigger("ajaxReload");
                 });
-            }, 600);
+            }, 2000);
         });
     },
 
