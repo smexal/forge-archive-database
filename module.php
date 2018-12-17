@@ -216,7 +216,8 @@ class Module extends AbstractModule {
             $table->setId($this->baseView);
             $table->addEditBar();
             $table = $this->barContent($table);
-            return $table->render();
+            $base_url = str_replace("http://", "//", Utils::getHomeUrl());
+            return '<div id="archive-database" data-base-url="'.$base_url.'">'.$table->render().'</div>';
         }
     }
 
