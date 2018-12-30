@@ -99,3 +99,43 @@
         }
     }
 }
+.detail-image.row {
+    padding-top: 40px;
+}
+.zapper {
+    position: fixed;
+    top: 0;
+    display: flex;
+    width: 90%;
+    left: 5%;
+    justify-content: space-between;
+
+    .next, .prev {
+        position: absolute;
+        margin-top: 140px;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+
+        &:before, &:after {
+            position: absolute;
+            height: 2px;
+            background-color: @color-grey-dark;
+            width: 100%;
+            content: '';
+            transform: rotate(45deg);
+            top: 0px;
+        }
+
+        &:after {
+            transform: rotate(-45deg);   
+            top: 22px;
+        }
+    }
+    .next {
+        right: 0;
+    }
+    .prev {
+        transform: rotate(-180deg);
+    }
+}

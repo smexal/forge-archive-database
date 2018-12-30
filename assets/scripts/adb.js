@@ -42,18 +42,47 @@ var archiveDatabase = {
         });
     },
 
-    bigClick : function() {
+    bigClick : function(imgId) {
+
         var idArrayForZapping = new Array();
+        var currentId = 0;
         $("#archive-database img.adb-thumb").each(function() {
             idArrayForZapping.push($(this).attr('data-id'));
         });
         $("#archive-database img.adb-thumb").each(function() {
             $(this).on('click', function() {
+                currentId = $(this).attr('data-id');
                 var requestUrl = $("#archive-database").attr('data-base-url');
                 requestUrl += '/api/archive-database/detailImage/' + $(this).attr('data-id');
                 rdon_overlay.open();
                 rdon_overlay.load(requestUrl);
+                currentIndex = idArrayForZapping.indexOf(currentId);
+                archiveDatabase.initNextPrev(currentIndex, idArrayForZapping);
             })
+        });
+
+    },
+
+    initNextPrev : function(currentIndex, idArrayForZapping) {
+        console.log('yo');
+        $("#detail-image-zapper > .next").unbind('click').on('click', function() {
+            console.log('next');
+            currentIndex++;
+            currentId = idArrayForZapping[currentIndex];
+            var requestUrl = $("#archive-database").attr('data-base-url');
+            requestUrl += '/api/archive-database/detailImage/' + currentId;
+            rdon_overlay.open();
+            rdon_overlay.load(requestUrl);
+        });
+
+        $("#detail-image-zapper > .prev").unbind('click').on('click', function() {
+            console.log('prev');
+            currentIndex--;
+            currentId = idArrayForZapping[currentIndex];
+            var requestUrl = $("#archive-database").attr('data-base-url');
+            requestUrl += '/api/archive-database/detailImage/' + currentId;
+            rdon_overlay.open();
+            rdon_overlay.load(requestUrl);
         });
     },
 
