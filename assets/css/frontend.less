@@ -59,11 +59,19 @@
     }
     .grid {
         margin-top: 60px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        height: auto !important;
 
         .grid-element {
             max-width: 260px;
+            min-width: 260px;
             margin: 0 10px 20px 0;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
 
             &:nth-child(4n) {
                 margin-right: 0;

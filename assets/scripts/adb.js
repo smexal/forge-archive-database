@@ -12,7 +12,7 @@ var archiveDatabase = {
             archiveDatabase.clickRemoveSelect(context, $(this));
         });
 
-        archiveDatabase.masonry();
+        //archiveDatabase.masonry();
         archiveDatabase.searchField();
         archiveDatabase.inifiniteLoading(context);
 
@@ -91,16 +91,13 @@ var archiveDatabase = {
                 var requestUrl = $("#archive-database").attr('data-base-url') + '/api/archive-database/infiniteLoading/'+type+
                     '?limit=30&offset=0'+
                     '&search=' + encodeURI(input.val())+
-                    '&s_title=' + encodeURI($("input[name='adb_s_title']").val()) +
-                    '&s_creation_date=' + encodeURI($("input[name='adb_s_creation_date']").val()) +
-                    '&s_subject=' + encodeURI($("input[name='adb_s_subject']").val()) +
-                    '&s_identifier=' + encodeURI($("input[name='adb_s_identifier']").val()) +
                     '&grid='+archiveDatabase.grid;
 
-                if(archiveDatabase.isMasonry()) {
+                $(".grid").html("");
+                /*if(archiveDatabase.isMasonry()) {
                     archiveDatabase.msnry.masonry('destroy');
                     archiveDatabase.msnry.html('');
-                }
+                }*/
                 var loader = $('<div class="sk-folding-cube"><div class="sk-cube1 sk-cube"></div><div class="sk-cube2 sk-cube"></div><div class="sk-cube4 sk-cube"></div><div class="sk-cube3 sk-cube"></div></div>');
                 $(".grid").css({height : '100px'});
                 $(".grid").append(loader);
@@ -116,20 +113,20 @@ var archiveDatabase = {
                         var $newtems = $(data.newRows);
                         // layout Masonry after each image loads
                         $(".grid").html($newtems);
-                        setTimeout(function() {
+                        /*setTimeout(function() {
                             $(".grid").imagesLoaded().progress( function() {
                                 archiveDatabase.msnry = $(".grid").masonry({
                                     itemSelector: '.grid-element'
                                 });
                             });
-                        }, 100);
+                        }, 100);*/
                     }
                     loader.fadeOut(400, function() {
                         table.find(".spinner").remove();
                     });
                     $(document).trigger("ajaxReload");
                 });
-            }, 2000);
+            }, 1500);
         });
     },
 
@@ -183,11 +180,13 @@ var archiveDatabase = {
                             table.find("tbody").append(data.newRows);
                         } else {
                             var $newtems = $(data.newRows);
-                            archiveDatabase.msnry.append($newtems).masonry( 'appended', $newtems );
+                            table.append($newtems);
+                            /*archiveDatabase.msnry.append($newtems).masonry( 'appended', $newtems );
                             // layout Masonry after each image loads
                             $newtems.imagesLoaded().progress( function() {
                                 archiveDatabase.msnry.masonry('layout');
-                            });
+                            });*/
+
                         }
                         $(document).trigger("ajaxReload");
                     }
