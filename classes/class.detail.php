@@ -17,17 +17,17 @@ class Detail {
 
         $this->fields = [
             'creation_date',
+            'contributor',
             'descriptor_icon',
             'soggetto',
+            /*'support',*/
             'rightholder',
-            'support',
             'color',
             'dimensions',
-            'author',
-            'contributor',
-            'identifier',
+            /*'author',*/
             'format',
-            'conservation_status',
+            'identifier',
+            /*'conservation_status',*/
         ];
     }
 
