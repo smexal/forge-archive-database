@@ -85,7 +85,7 @@ class Detail {
             }
 
             $meta[] = [
-                'title' => i($field, 'adb'),
+                'title' => ucfirst(i($field, 'adb')),
                 'value' => $value
             ];
         }

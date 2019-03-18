@@ -110,6 +110,7 @@ class DataUpdater {
             }
         }
         $bc = BaseConnector::instance();
+        //var_dump('set/'.$this->type, http_build_query(array_merge(['id' => $this->data['id']], $this->getConfig(), $toUpdate)));
         $res = $bc->call('GET', 'set/'.$this->type, array_merge(['id' => $this->data['id']], $this->getConfig(), $toUpdate));
     }
 

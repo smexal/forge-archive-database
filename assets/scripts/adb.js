@@ -66,9 +66,12 @@ var archiveDatabase = {
     initNextPrev : function(currentIndex, idArrayForZapping) {
         console.log('yo');
         $("#detail-image-zapper > .next").unbind('click').on('click', function() {
-            console.log('next');
             currentIndex++;
             currentId = idArrayForZapping[currentIndex];
+            if(! archiveDatabase.isNumeric(currentId)) {
+                currentIndex--;
+                return;
+            }
             var requestUrl = $("#archive-database").attr('data-base-url');
             requestUrl += '/api/archive-database/detailImage/' + currentId;
             rdon_overlay.open();
@@ -76,9 +79,12 @@ var archiveDatabase = {
         });
 
         $("#detail-image-zapper > .prev").unbind('click').on('click', function() {
-            console.log('prev');
             currentIndex--;
             currentId = idArrayForZapping[currentIndex];
+            if(! archiveDatabase.isNumeric(currentId)) {
+                currentIndex++;
+                return;
+            }
             var requestUrl = $("#archive-database").attr('data-base-url');
             requestUrl += '/api/archive-database/detailImage/' + currentId;
             rdon_overlay.open();
@@ -105,6 +111,10 @@ var archiveDatabase = {
               itemSelector: '.grid-element'
             });
         });
+    },
+
+    isNumeric : function(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
     },
 
     searchField: function () {

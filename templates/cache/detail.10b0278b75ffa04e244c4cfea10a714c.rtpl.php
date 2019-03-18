@@ -10,6 +10,6 @@
         <?php } ?>
 
         </dl>
-        <a style="margin-top: 20px" href="<?php echo $buy_link;?>" class="btn btn-discreet"><?php echo $buy_text;?></a>
+        <a style="margin-top: 20px" href="<?php echo $buy_link;?>" target="_blank" class="btn btn-discreet"><?php echo $buy_text;?></a>
     </div>
 </div>
