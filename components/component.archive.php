@@ -36,10 +36,10 @@ class ArchiveComponent extends Component {
 
     public function content() {
         /* table */
-        $t = 'images';
+        $t = 'images/filter?field=public&value=1&type=EQUALS';
         $bc = BaseConnector::instance();
         $table = new Table(json_decode($bc->call('GET', 'get/'.$t)));
-        $table->setId($t);
+        $table->setId("images");
         $table->setFields(explode(",", Settings::get('adb-grid-fields')));
         $table->switchToGrid();
         $table->hideActions();
