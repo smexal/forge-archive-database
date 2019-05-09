@@ -120,14 +120,14 @@ class Module extends AbstractModule {
 
     public function infiniteLoading($query, $data) {
         $bc = BaseConnector::instance();
-        $q = '?field=public&value=1&type=EQUALS&limit='.$_GET['limit'].'&offset='.$_GET['offset'];
+        $q = '?limit='.$_GET['limit'].'&offset='.$_GET['offset'];
         if($query[0] == 'images') {
             $q.='&hide='.Settings::get('adb-base-hide-fields-in-table');
         }
         if(\array_key_exists('search', $_GET)) {
             $q.= "&search=".\urlencode($_GET['search']);
         }
-        $filter = '/filter/';
+        $filter = '/';
         if(array_key_exists('s_title', $_GET) || array_key_exists('s_identifier', $_GET) || array_key_exists('s_creation_date', $_GET)) {
             if($_GET['s_title'] != 'undefined' && strlen($_GET['s_title']) > 0) {
                 $filter = '/filter/';
